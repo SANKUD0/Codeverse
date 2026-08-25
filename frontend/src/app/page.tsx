@@ -22,7 +22,9 @@ export default function Home() {
         <div className={styles.imagePanel} />
       </div>
 
-      <div className="col-12 col-md-6 d-flex align-items-center justify-content-center bg-login text-white">
+      {/* `text-white` retiré : il forçait le blanc sur tout le contenu et
+          rendait le texte illisible en mode clair. */}
+      <div className="col-12 col-md-6 d-flex align-items-center justify-content-center bg-login">
         <div className={styles.formCard}>
           <h2 className={`${styles.title} text-center mb-4`}>Connexion</h2>
 
@@ -37,7 +39,7 @@ export default function Home() {
               <input
                 type="email"
                 id="email"
-                className="form-control"
+                className={`form-control ${styles.field}`}
                 name="email"
                 placeholder="Adresse courriel"
                 required
@@ -49,7 +51,7 @@ export default function Home() {
               <input
                 type="password"
                 id="password"
-                className="form-control"
+                className={`form-control ${styles.field}`}
                 name="password"
                 placeholder="Mot de passe"
                 required
@@ -57,39 +59,31 @@ export default function Home() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="form-check mb-3">
+            <div className="form-check mb-4">
               <input
-                className="form-check-input"
+                className={`form-check-input ${styles.checkInput}`}
                 type="checkbox"
                 id="remember"
                 checked={remember}
                 onChange={(e) => setRemember(e.target.checked)}
               />
-              <label className="form-check-label" htmlFor="remember">
+              <label className={`form-check-label ${styles.checkLabel}`} htmlFor="remember">
                 Rester connectée
               </label>
             </div>
 
-            <button type="submit" className="btn btn-custom-light-primary w-100 mb-2">
+            <button type="submit" className="btn btn-custom-primary w-100 mb-2">
               Se connecter
             </button>
 
             {/* Dashboard pas encore migré -> on renvoie vers l'ancien app pour l'instant */}
-            <a
-              className="btn btn-custom-light-accent w-100"
-              href={`/dashboard`}
-            >
+            <a className="btn btn-custom-light-accent w-100" href="/dashboard">
               Connexion invité
             </a>
 
-            <p className="mt-4 text-center">
+            <p className={`${styles.footerText} mt-4 mb-0 text-center`}>
               Pas encore de compte ?{" "}
-              <a
-                className="link-custom btn btn-custom-primary"
-                href={`/account/register`}
-              >
-                S&apos;inscrire
-              </a>
+              <a href="/account/register">S&apos;inscrire</a>
             </p>
           </form>
         </div>

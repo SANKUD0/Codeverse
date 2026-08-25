@@ -1,161 +1,61 @@
-@use "../app/styles/mixins" as *;
+// Système de thèmes — piloté par prefers-color-scheme (pas par une classe .theme--*).
+// Utilisation ailleurs : @use "theme" as *;   (grâce à sassOptions.loadPaths -> ./styles)
+@use "sass:color";
+@use "sass:map";
 
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-family);
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
+// -- dark ("default") --
+$Primary: color.adjust(#166174, $saturation: 2%) !default;
+$Secondary: #314e5e !default;
+$Text: #dce8ef !default;
+$Background: color.adjust(#35374b, $lightness: -5%) !default;
+$Accent: #5d6283 !default;
+$Delete: indianred;
 
-.notFound {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 2rem;
-  text-align: center;
-  overflow: hidden;
-  isolation: isolate;
+$SecondaryFilter: brightness(0) saturate(100%) invert(24%) sepia(5%) saturate(4393%) hue-rotate(158deg) brightness(180%) contrast(80%);
 
-  // texture en points, très subtile, pour casser le vide du fond
-  background-image: radial-gradient(currentColor 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-position: center;
-  color: var(--text-color);
-  opacity: 1;
+// -- light --
+// Refaite pour rester dans la même famille de teintes que le thème sombre
+// (teal pour le primary, bleu-slate pour le secondary, indigo pour l'accent),
+// mais avec un fond réellement clair/propre et un texte foncé bien contrasté.
+$Background-light: #f4f7f9;
+$Text-light: #16232c;
+$Secondary-light: #d7e3e8;
+$Primary-light: #8fcbd9;
+$Accent-light: #c7cce3;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.35;
-    pointer-events: none;
-  }
+$themes: (
+  default: (
+    primary: $Primary,
+    secondary: $Secondary,
+    text: $Text,
+    background: $Background,
+    accent: $Accent,
+  ),
+  light: (
+    primary: $Primary-light,
+    secondary: $Secondary-light,
+    text: $Text-light,
+    background: $Background-light,
+    accent: $Accent-light,
+  ),
+);
 
-  &::before {
-    top: -10%;
-    left: 50%;
-    width: 32rem;
-    height: 32rem;
-    transform: translateX(-65%);
-    background: var(--accent);
-  }
+$theme-map: null;
 
-  &::after {
-    bottom: -15%;
-    right: 10%;
-    width: 22rem;
-    height: 22rem;
-    background: var(--accent);
-    opacity: 0.2;
+@mixin themed() {
+  // "light" = valeurs par défaut (mode clair, ou si l'OS ne précise rien)
+  $theme-map: map.get($themes, light) !global;
+  @content;
+  $theme-map: null !global;
+
+  // "default" = palette sombre, appliquée uniquement si l'OS est en mode sombre
+  @media (prefers-color-scheme: dark) {
+    $theme-map: map.get($themes, default) !global;
+    @content;
+    $theme-map: null !global;
   }
 }
 
-.content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 30rem;
-  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.icon {
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 1.25rem;
-  color: var(--accent);
-  animation: float 5s ease-in-out infinite;
-}
-
-.code {
-  margin: 0;
-  font-size: clamp(4.5rem, 14vw, 9rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  background: linear-gradient(160deg, var(--text-color) 20%, var(--accent) 120%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-.title {
-  margin: 0.75rem 0 0.5rem;
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.text {
-  margin: 0 0 2.25rem;
-  color: var(--text-color);
-  opacity: 0.7;
-  line-height: 1.5;
-}
-
-.buttonBack {
-  @include button-style;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-
-  svg {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.2s ease;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px -8px var(--accent);
-  }
-
-  &:hover svg {
-    transform: translateX(-3px);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .content,
-  .icon {
-    animation: none;
-  }
+@function t($key) {
+  @return map.get($theme-map, $key);
 }
