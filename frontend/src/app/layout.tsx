@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.scss";
 
-export const metadata: Metadata = {
-  title: "Codeverse",
-  description: "A platform for developers to share and collaborate on code.",
-};
-
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
+    <html lang="fr" className="theme--default">
       <body>{children}</body>
     </html>
   );

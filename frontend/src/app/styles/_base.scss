@@ -1,0 +1,52 @@
+// Portage de la partie générale + "loginForm" de wwwroot/css/index.scss (ASP.NET).
+// Global (pas un .module.scss) : html/body doivent être ciblés sans hash de CSS Module.
+@use "theme" as *;
+
+$ErrorColour: red;
+
+:root {
+  --g: 4px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+
+  @include themed() {
+    background-color: t('background');
+    color: t('text');
+  }
+}
+
+.brand-name {
+  font-weight: bold;
+  border-radius: 20px;
+
+  @include themed() {
+    color: t('text');
+    background-color: t('primary');
+  }
+}
+
+a {
+  @include themed() {
+    color: t('accent');
+  }
+}
+
+.bg-login {
+  @include themed() {
+    background-color: t('background');
+  }
+}
+
+#errorMessage {
+  color: $ErrorColour;
+}
+
+.link-custom {
+  margin-left: 10px;
+}

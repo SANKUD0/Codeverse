@@ -1,0 +1,272 @@
+// Portage direct de wwwroot/css/Ui-Custom.scss (ASP.NET).
+// Fichier global (pas un .module.scss) : ces classes (btn-custom-*, custom-txtField, dropdown-*)
+// sont utilisées comme des utilitaires partout dans le site, exactement comme Bootstrap.
+@use "sass:color";
+@use "theme" as *;
+
+/*#region custom-primary*/
+.btn-custom-primary {
+  @include themed() {
+    color: t('text') !important;
+    background-color: t('primary');
+  }
+}
+
+.btn-custom-primary:hover {
+  @include themed() {
+    background-color: color.adjust(t('primary'), $lightness: 3%);
+    box-shadow: 0 0 0 0.15rem color.adjust(t('primary'), $lightness: 3%);
+  }
+}
+
+.btn-custom-primary:active {
+  @include themed() {
+    box-shadow: 0 0 0 0.15rem color.adjust(t('primary'), $lightness: 3%) !important;
+    background-color: t('primary') !important;
+  }
+}
+
+.btn-custom-primary:focus {
+  @include themed() {
+    background-color: color.adjust(t('primary'), $lightness: 3%);
+    box-shadow: 0 0 0 0.15rem color.adjust(t('primary'), $lightness: 3%) !important;
+  }
+}
+/*#endregion*/
+
+/*#region custom-accent*/
+.btn-custom-accent {
+  @include themed() {
+    color: t('text') !important;
+    background-color: t('accent');
+  }
+}
+
+.btn-custom-accent:hover {
+  @include themed() {
+    box-shadow: 0 0 0 0.15rem color.adjust(t('accent'), $lightness: 3%);
+    background-color: color.adjust(t('accent'), $lightness: 3%);
+  }
+}
+
+.btn-custom-accent:active {
+  @include themed() {
+    background-color: t('accent') !important;
+    box-shadow: 0 0 0 0.15rem color.adjust(t('accent'), $lightness: 3%) !important;
+  }
+}
+
+.btn-custom-accent:focus {
+  @include themed() {
+    background-color: color.adjust(t('accent'), $lightness: 3%);
+    box-shadow: 0 0 0 0.15rem color.adjust(t('accent'), $lightness: 3%) !important;
+  }
+}
+/*#endregion*/
+
+/*#region custom-secondary*/
+.btn-custom-secondary {
+  @include themed() {
+    color: t('text') !important;
+    background-color: t('secondary');
+  }
+}
+
+.btn-custom-secondary:hover {
+  @include themed() {
+    box-shadow: 0 0 0 0.15rem color.adjust(t('primary'), $lightness: 3%);
+    background-color: color.adjust(t('primary'), $lightness: 3%);
+  }
+}
+
+.btn-custom-secondary:active {
+  @include themed() {
+    background-color: t('secondary') !important;
+    box-shadow: 0 0 0 0.15rem color.adjust(t('primary'), $lightness: 3%) !important;
+  }
+}
+
+.btn-custom-secondary:focus {
+  @include themed() {
+    background-color: color.adjust(t('primary'), $lightness: 3%);
+  }
+}
+/*#endregion*/
+
+/*#region custom-light-primary*/
+.btn-custom-light-primary {
+  @include themed() {
+    color: t('text') !important;
+    box-shadow: 0 0 0 0.1rem t('primary');
+  }
+
+  background-color: transparent;
+}
+
+.btn-custom-light-primary:hover {
+  @include themed() {
+    background-color: t('primary');
+  }
+}
+
+.btn-custom-light-primary:active {
+  @include themed() {
+    box-shadow: 0 0 0 0.1rem color.adjust(t('primary'), $lightness: -6%) !important;
+    background-color: color.adjust(t('primary'), $lightness: -6%) !important;
+  }
+}
+
+.btn-custom-light-primary:focus {
+  background-color: transparent;
+
+  @include themed() {
+    box-shadow: 0 0 0 0.1rem t('primary');
+  }
+}
+/*#endregion*/
+
+/*#region custom-light-secondary*/
+.btn-custom-light-secondary {
+  background-color: transparent;
+
+  @include themed() {
+    box-shadow: 0 0 0 0.1rem t('primary');
+    color: t('text') !important;
+  }
+}
+
+.btn-custom-light-secondary:hover {
+  @include themed() {
+    background-color: t('secondary');
+  }
+}
+
+.btn-custom-light-secondary:active {
+  @include themed() {
+    background-color: color.adjust(t('secondary'), $lightness: -6%) !important;
+    box-shadow: 0 0 0 0.1rem color.adjust(t('secondary'), $lightness: -6%) !important;
+  }
+}
+
+.btn-custom-light-secondary:focus {
+  background-color: transparent;
+
+  @include themed() {
+    box-shadow: 0 0 0 0.1rem t('secondary');
+  }
+}
+/*#endregion*/
+
+/*#region custom-light-accent*/
+.btn-custom-light-accent {
+  background-color: transparent;
+
+  @include themed() {
+    color: t('text') !important;
+    box-shadow: 0 0 0 0.1rem t('accent');
+  }
+}
+
+.btn-custom-light-accent:hover {
+  @include themed() {
+    background-color: t('accent');
+  }
+}
+
+.btn-custom-light-accent:active {
+  @include themed() {
+    background-color: color.adjust(t('accent'), $lightness: -6%) !important;
+    box-shadow: 0 0 0 0.1rem color.adjust(t('accent'), $lightness: -6%) !important;
+  }
+}
+
+.btn-custom-light-accent:focus {
+  background-color: transparent;
+
+  @include themed() {
+    box-shadow: 0 0 0 0.1rem t('accent');
+  }
+}
+/*#endregion*/
+
+.custom-txtField {
+  border: unset;
+
+  @include themed() {
+    background-color: color.adjust(t('primary'), $lightness: 3%);
+    color: t('text');
+  }
+}
+
+.custom-txtField:focus {
+  @include themed() {
+    background-color: color.adjust(t('primary'), $lightness: 3%);
+    color: t('text');
+    box-shadow: 0 0 8px color.adjust(t('primary'), $lightness: 3%) !important;
+  }
+}
+
+.custom-txtField::placeholder {
+  @include themed() {
+    color: color.adjust(t('text'), $lightness: -15%);
+  }
+
+  opacity: 1;
+}
+
+/*#region DropdownSettings*/
+.dropdown-menu {
+  @include themed() {
+    border: 1px solid color.adjust(t('accent'), $lightness: 3%);
+  }
+}
+
+.dropdown-menu > li > a:hover {
+  @include themed() {
+    background-color: t('background');
+    color: t('text');
+  }
+
+  filter: brightness(1.2);
+}
+
+.dropdown-menu-setting .dropdown-item-custom:active {
+  @include themed() {
+    color: t('text') !important;
+    background-color: t('primary') !important;
+  }
+}
+
+.dropdown-menu-setting .dropdown-item-custom.active {
+  @include themed() {
+    background-color: t('primary') !important;
+    color: t('text') !important;
+  }
+}
+
+.dropdown-menu-setting .dropdown-item-custom.active:hover {
+  @include themed() {
+    background-color: t('primary') !important;
+  }
+
+  filter: brightness(1.1);
+}
+
+.dropdown-item-custom {
+  border-radius: 0 0 !important;
+  -webkit-user-select: none;
+  user-select: none;
+
+  @include themed() {
+    background-color: t('background');
+    border-bottom: 0.5px solid color.adjust(t('accent'), $lightness: 3%);
+    color: t('text');
+  }
+}
+
+.dropdown-menu-setting {
+  @include themed() {
+    background-color: t('background');
+  }
+}
+/*#endregion*/

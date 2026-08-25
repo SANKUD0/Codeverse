@@ -1,0 +1,38 @@
+@use "../app/styles/theme" as *;
+
+.imagePanel {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-image: url("/images/une_image_representa.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // léger dégradé en bas pour que l'image ne tranche pas trop sec avec le panneau de connexion
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 100%);
+  }
+}
+
+.formCard {
+  width: 100%;
+  max-width: 22rem;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  @include themed() {
+    background-color: t('secondary');
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
+  }
+}
+
+.title {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}

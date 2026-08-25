@@ -1,0 +1,62 @@
+// Portage direct de wwwroot/css/_Global.scss (ASP.NET) — système de thèmes.
+// Toute la logique de couleurs par thème (mixin `themed()` + fonction `t()`) est identique.
+// Utilisation ailleurs : @use "theme" as *;   (grâce à sassOptions.loadPaths -> ./styles)
+@use "sass:color";
+@use "sass:map";
+
+$Primary: color.adjust(#166174, $saturation: 2%) !default;
+$Secondary: #314e5e !default;
+$Text: #dce8ef !default;
+$Background: color.adjust(#35374b, $lightness: -5%) !default;
+$Accent: #5d6283 !default;
+$Delete: indianred;
+
+$SecondaryFilter: brightness(0) saturate(100%) invert(24%) sepia(5%) saturate(4393%) hue-rotate(158deg) brightness(180%) contrast(80%);
+
+// -- light --
+$Primary-light: #a1bece;
+$Secondary-light: #84a5ae;
+$Text-light: #102632;
+$Background-light: #b4b6ca;
+$Accent-light: #b3b495;
+
+$themes: (
+  default: (
+    primary: $Primary,
+    secondary: $Secondary,
+    text: $Text,
+    background: $Background,
+    accent: $Accent,
+  ),
+  light: (
+    primary: $Primary-light,
+    secondary: $Secondary-light,
+    text: $Text-light,
+    background: $Background-light,
+    accent: $Accent-light,
+  ),
+);
+
+// Déclaré à la racine de la feuille de style pour éviter l'avertissement
+// "!global assignments won't be able to declare new variables" (Dart Sass 2.0+).
+$theme-map: null;
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+
+      @each $key, $submap in $map {
+        $value: map.get(map.get($themes, $theme), '#{$key}');
+        $theme-map: map.merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map.get($theme-map, $key);
+}
