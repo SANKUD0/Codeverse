@@ -77,7 +77,7 @@ export default function Home() {
             {/* Dashboard pas encore migré -> on renvoie vers l'ancien app pour l'instant */}
             <a
               className="btn btn-custom-light-accent w-100"
-              href={`/Dashboard`}
+              href={`/dashboard`}
             >
               Connexion invité
             </a>
@@ -86,7 +86,7 @@ export default function Home() {
               Pas encore de compte ?{" "}
               <a
                 className="link-custom btn btn-custom-primary"
-                href={`/Account/Register`}
+                href={`/account/register`}
               >
                 S&apos;inscrire
               </a>
