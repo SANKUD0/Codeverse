@@ -1,5 +1,6 @@
-import './globals.css'
-import styles from './global-not-found.module.css'
+import './globals.scss'
+import Link from 'next/link'
+import styles from './global-not-found.module.scss'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 
@@ -15,7 +16,8 @@ export default function GlobalNotFound() {
         <html lang="en" className={`${styles.NotFound} ${inter.className}`}>
             <body>
                 <h1>404 - Page Not Found</h1>
-                <p>This page does not exist.</p>
+                <p>The page you are looking for does not exist.</p>
+                <Link className={styles.buttonBack} href="/">Go Back</Link>
             </body>
         </html>
     )
