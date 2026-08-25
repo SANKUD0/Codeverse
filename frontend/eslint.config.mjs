@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Fichiers de config d'outillage — pas besoin du lint applicatif ici
+    "jest.config.js",
+    "jest.setup.js",
   ]),
 ]);
 
