@@ -4,9 +4,6 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  experimental: {
-    globalNotFound: true,
-  },
   sassOptions: {
     loadPaths: [path.join(__dirname, "styles")],
   },
