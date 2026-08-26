@@ -77,7 +77,7 @@ export default function Home() {
             </button>
 
             {/* Dashboard pas encore migré -> on renvoie vers l'ancien app pour l'instant */}
-            <a className="btn btn-custom-light-accent w-100" href="/dashboard">
+            <a className="btn btn-custom-light-accent w-100" href="/accueil">
               Connexion invité
             </a>
 
