@@ -12,10 +12,10 @@ $Delete: indianred;
 $SecondaryFilter: brightness(0) saturate(100%) invert(24%) sepia(5%) saturate(4393%) hue-rotate(158deg) brightness(180%) contrast(80%);
 
 // -- light --
-$Background-light: #f5f2ed; // papier chaud
+$Primary-light: #0f6d80; // teal riche — la couleur qui porte l'interface
 $Secondary-light: #ffffff; // surfaces qui se soulèvent du canevas
 $Text-light: #1c2b33; // encre profonde, sous-ton teal
-$Primary-light: #0f6d80; // teal riche — la couleur qui porte l'interface
+$Background-light: #f5f2ed; // papier chaud
 $Accent-light: #a94c28; // terracotta — contrepoint chaud du teal
 
 
