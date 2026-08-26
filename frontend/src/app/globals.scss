@@ -1,7 +1,7 @@
 // src/app/globals.scss
-@use "../app/styles/theme" as *;
-@use "../app/styles/ui-custom";
-@use "../app/styles/base";
+@use "../../public/styles/theme" as *;
+@use "../../public/styles/ui-custom";
+@use "../../public/styles/base";
 
 // mode clair = thème "light" de _theme.scss
 :root {
