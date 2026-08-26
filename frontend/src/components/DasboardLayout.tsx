@@ -46,7 +46,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </SidebarSection>
 
                     <SidebarSection label="Compte">
-                        <SidebarItem href="/account/parametres" icon={<IconSettings />}>
+                        <SidebarItem href="/account/settings" icon={<IconSettings />}>
                             Paramètres
                         </SidebarItem>
                         <SidebarItem href="/account" icon={<IconAccount />} exact>
