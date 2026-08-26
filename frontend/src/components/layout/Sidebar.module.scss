@@ -1,0 +1,395 @@
+@use "../../app/styles/theme" as *;
+
+/* Largeurs pilotées par des variables CSS pour que AppShell puisse
+   décaler le contenu avec exactement la même valeur. */
+:global(:root) {
+  --sidebar-w: 260px;
+  --sidebar-w-collapsed: 68px;
+}
+
+.sidebar {
+  --w: var(--sidebar-w-collapsed);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: var(--w);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-right: 1px solid;
+
+  @include themed() {
+    background-color: color-mix(in srgb, #{t('background')} 92%, black);
+    color: t('text');
+    border-right-color: color-mix(in srgb, #{t('text')} 10%, transparent);
+  }
+
+  &[data-ready] {
+    transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &[data-expanded] {
+    --w: var(--sidebar-w);
+  }
+}
+
+/* ---------- En-tête ---------- */
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 4px;
+  min-width: 0;
+
+  @include themed() {
+    color: t('text');
+  }
+}
+
+.brandMark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: -0.02em;
+
+  @include themed() {
+    background-color: t('primary');
+    color: t('text-on-brand');
+  }
+}
+
+.brandLabel {
+  font-weight: 650;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: 6px 12px;
+
+  & + & {
+    margin-top: 6px;
+    padding-top: 12px;
+    border-top: 1px solid;
+
+    @include themed() {
+      border-top-color: color-mix(in srgb, #{t('text')} 9%, transparent);
+    }
+  }
+}
+
+.sectionLabel {
+  margin: 0 0 6px;
+  padding: 0 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  @include themed() {
+    color: color-mix(in srgb, #{t('text')} 48%, transparent);
+  }
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ---------- Entrée ---------- */
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.895rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.14s ease, color 0.14s ease;
+
+  @include themed() {
+    color: color-mix(in srgb, #{t('text')} 78%, transparent);
+  }
+
+  &:hover {
+    @include themed() {
+      background-color: color-mix(in srgb, #{t('text')} 7%, transparent);
+      color: t('text');
+    }
+  }
+
+  &[data-active] {
+    font-weight: 600;
+
+    @include themed() {
+      background-color: color-mix(in srgb, #{t('primary')} 16%, transparent);
+      color: t('text');
+    }
+  }
+
+  /* Filet vertical à gauche de l'entrée active */
+  &[data-active]::before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: 0 3px 3px 0;
+
+    @include themed() {
+      background-color: t('primary');
+    }
+  }
+
+  &:focus-visible {
+    outline-offset: 2px;
+
+    @include themed() {
+      outline: 2px solid t('primary');
+    }
+  }
+}
+
+.itemIcon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+
+  :global(svg) {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.7;
+  }
+}
+
+.itemLabel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemBadge {
+  flex-shrink: 0;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+
+  @include themed() {
+    background-color: t('accent');
+    color: t('text-on-brand');
+  }
+}
+
+/* ---------- Pied ---------- */
+.footer {
+  margin-top: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid;
+
+  @include themed() {
+    border-top-color: color-mix(in srgb, #{t('text')} 9%, transparent);
+  }
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: none;
+  font: 600 0.875rem/1 inherit;
+  font-family: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.14s ease, box-shadow 0.14s ease;
+
+  &:focus-visible {
+    outline-offset: 2px;
+
+    @include themed() {
+      outline: 2px solid t('primary');
+    }
+  }
+}
+
+.actionSolid {
+  @include themed() {
+    background-color: t('primary');
+    color: t('text-on-brand');
+  }
+
+  &:hover {
+    @include themed() {
+      background-color: color-mix(in srgb, #{t('primary')} 88%, black);
+    }
+  }
+}
+
+.actionOutline {
+  background-color: transparent;
+
+  @include themed() {
+    color: t('text');
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, #{t('text')} 22%, transparent);
+  }
+
+  &:hover {
+    @include themed() {
+      background-color: color-mix(in srgb, #{t('text')} 7%, transparent);
+    }
+  }
+}
+
+/* ---------- Rail replié ---------- */
+/* Tout ce qui est textuel disparaît, les icônes se centrent,
+   et une infobulle prend le relais au survol. */
+.sidebar:not([data-expanded]) {
+  .brandLabel,
+  .itemLabel,
+  .itemBadge,
+  .sectionLabel {
+    opacity: 0;
+    width: 0;
+    pointer-events: none;
+  }
+
+  .item,
+  .action {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .item[data-tooltip]:hover::after,
+  .action[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 80;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+
+    @include themed() {
+      background-color: color-mix(in srgb, #{t('text')} 92%, transparent);
+      color: t('background');
+    }
+  }
+
+  .action {
+    position: relative;
+  }
+}
+
+/* ---------- Mobile : drawer ---------- */
+.scrim {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    --w: var(--sidebar-w);
+    transform: translateX(-100%);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+
+    &[data-open] {
+      transform: translateX(0);
+    }
+
+    /* En drawer on affiche toujours les libellés, jamais le rail réduit */
+    .brandLabel,
+    .itemLabel,
+    .itemBadge,
+    .sectionLabel {
+      opacity: 1;
+      width: auto;
+      pointer-events: auto;
+    }
+
+    .item,
+    .action {
+      justify-content: flex-start;
+      padding: 0 10px;
+    }
+
+    .item[data-tooltip]:hover::after,
+    .action[data-tooltip]:hover::after {
+      content: none;
+    }
+  }
+
+  .scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease;
+
+    &[data-visible] {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .scrim {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,39 @@
+@use "../../app/styles/theme" as *;
+
+.main {
+  min-height: 100dvh;
+  margin-left: var(--sidebar-w-collapsed, 68px);
+
+  @include themed() {
+    background-color: t('background');
+    color: t('text');
+  }
+
+  &[data-ready] {
+    transition: margin-left 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &[data-expanded] {
+    margin-left: var(--sidebar-w, 260px);
+  }
+}
+
+.content {
+  padding: 24px;
+}
+
+@media (max-width: 900px) {
+  /* En mobile la sidebar passe en drawer par-dessus : plus de décalage. */
+  .main,
+  .main[data-expanded] {
+    margin-left: 0;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main { transition: none !important; }
+}
