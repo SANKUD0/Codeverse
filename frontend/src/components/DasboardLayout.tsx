@@ -45,29 +45,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         </SidebarItem>
                     </SidebarSection>
 
-                    <SidebarSection label="Compte">
-                        <SidebarItem href="/account/settings" icon={<IconSettings />}>
-                            Paramètres
-                        </SidebarItem>
-                        <SidebarItem href="/account" icon={<IconAccount />} exact>
-                            Compte
-                        </SidebarItem>
-                    </SidebarSection>
-
                     <SidebarFooter>
                         <SidebarAction icon={<IconPlus />} href="/posts/create">
                             Nouveau post
                         </SidebarAction>
-                        <SidebarAction
-                            icon={<IconLogout />}
-                            variant="outline"
-                            onClick={() => {
-                                // TODO: brancher la déconnexion
-                            }}
-                        >
-                            Déconnexion
-                        </SidebarAction>
+                        <SidebarItem href="/settings" icon={<IconSettings />}>
+                            Paramètres
+                        </SidebarItem>
                     </SidebarFooter>
+
                 </Sidebar>
             }
         >
@@ -83,25 +69,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <IconBell />
                 </NavbarIconButton>
 
-                <Menu
-                    label="Menu du compte"
-                    trigger={<NavbarAvatar initials="AF" name="Antoine" />}
-                >
-                    <MenuLabel>Antoine Fauché</MenuLabel>
+                <Menu label="Menu du compte" trigger={<NavbarAvatar initials="AF" name="Antoine" />}>
+                    <MenuLabel>Antoine Fauche-Salman</MenuLabel>
                     <MenuItem href="/account" icon={<IconAccount />}>
                         Mon profil
                     </MenuItem>
-                    <MenuItem href="/account/parametres" icon={<IconSettings />}>
+                    <MenuItem href="/settings" icon={<IconSettings />}>
                         Paramètres
                     </MenuItem>
                     <MenuSeparator />
-                    <MenuItem
-                        icon={<IconLogout />}
-                        danger
-                        onSelect={() => {
+                    <MenuItem icon={<IconLogout />} danger onSelect={() => {
                             // TODO: brancher la déconnexion
-                        }}
-                    >
+                        }} >
                         Déconnexion
                     </MenuItem>
                 </Menu>
