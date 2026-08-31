@@ -1,0 +1,56 @@
+@use "public/styles/theme" as *;
+
+.post {
+    border-radius: 8px;
+    padding: 16px;
+
+    @include themed() {
+        background-color: t('secondary');
+    }
+}
+
+.content {
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    overflow-wrap: break-word;
+
+    @include themed() {
+        color: t('text');
+        background-color: t('post-background');
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    gap: 12px;
+}
+
+.date {
+    font-size: 10px;
+
+    @include themed() {
+        color: t('text');
+    }
+}
+
+.username {
+    font-weight: bold;
+
+    @include themed() {
+        color: t('text');
+    }
+}

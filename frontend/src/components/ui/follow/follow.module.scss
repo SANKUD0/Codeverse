@@ -1,0 +1,13 @@
+@use "public/styles/theme" as *;
+
+
+.follow {}
+
+.button {
+    background-color: transparent;
+    border: 1px solid black;
+    
+    @include themed() {
+        color: t('text')
+    }
+}
