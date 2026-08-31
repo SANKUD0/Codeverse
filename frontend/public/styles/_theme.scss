@@ -8,6 +8,7 @@ $Text: #dce8ef !default;
 $Background: color.adjust(#35374b, $lightness: -5%) !default;
 $Accent: #5d6283 !default;
 $Delete: indianred;
+$Post-background: color.adjust(#35374b, $lightness: -5%) !default;
 
 $SecondaryFilter: brightness(0) saturate(100%) invert(24%) sepia(5%) saturate(4393%) hue-rotate(158deg) brightness(180%) contrast(80%);
 
@@ -17,6 +18,7 @@ $Secondary-light: #ffffff; // surfaces qui se soulèvent du canevas
 $Text-light: #1c2b33; // encre profonde, sous-ton teal
 $Background-light: #f5f2ed; // papier chaud
 $Accent-light: #a94c28; // terracotta — contrepoint chaud du teal
+$Post-background-light: rgb(212, 199, 188) !default;
 
 
 $TextOnBrand: $Text; // dark : le texte pâle existant convient déjà
@@ -29,6 +31,7 @@ $themes: (
     text: $Text,
     background: $Background,
     accent: $Accent,
+    post-background: $Post-background,
     text-on-brand: $TextOnBrand,
   ),
   light: (
@@ -37,6 +40,7 @@ $themes: (
     text: $Text-light,
     background: $Background-light,
     accent: $Accent-light,
+    post-background: $Post-background-light,
     text-on-brand: $TextOnBrand-light,
   ),
 );
