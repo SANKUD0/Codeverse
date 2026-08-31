@@ -1,13 +1,19 @@
 @use "public/styles/theme" as *;
 
 
-.follow {}
+.follow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .button {
     background-color: transparent;
-    border: 1px solid black;
+    border: 1px solid;
+    border-radius: 14px;
     
     @include themed() {
-        color: t('text')
+        color: t('text');
+        border-color: t('border-color');
     }
 }
