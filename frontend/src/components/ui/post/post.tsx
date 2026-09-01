@@ -1,10 +1,13 @@
 import styles from "./post.module.scss"
 import Follow from "../follow/follow"
+import Avatar from "../avatar/avatar"
 
 interface PostProps {
     username: string;
     datePosted: string;
-    icon: string;
+    // Undefined tant qu'aucune image n'a été uploadée / que le backend
+    // n'est pas branché : Avatar affiche alors les initiales de `username`.
+    avatarUrl?: string | null;
     likes?: React.ReactNode;
     content: PostContentProps;
     idOwnerPost: string;
@@ -15,12 +18,12 @@ interface PostContentProps {
     content: string;
 };
 
-export default function Post({ username, datePosted, icon, likes, content, idOwnerPost }: PostProps) {
+export default function Post({ username, datePosted, avatarUrl, likes, content, idOwnerPost }: PostProps) {
     return (
         <div className={styles.post}>
             <div className={styles.header}>
                 <div className={styles.userInfo}>
-                    <IconUsername />
+                    <Avatar username={username} avatarUrl={avatarUrl} />
                     <div className={styles.meta}>
                         <span className={styles.username}>{username}</span>
                         <span className={styles.date}>{datePosted}</span>
@@ -47,14 +50,6 @@ function PostContent({ children, title, content }: { children?: React.ReactNode 
         <div className={styles.content}>
             <h3>{title}</h3>
             <p>{content}</p>
-        </div>
-    );
-}
-
-function IconUsername() {
-    return (
-        <div className={styles.icon}>
-            <img src="" alt="icon" />
         </div>
     );
 }

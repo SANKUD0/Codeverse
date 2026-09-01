@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   sassOptions: {
     loadPaths: [path.join(__dirname)],
   },
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "*.googleusercontent.com" },
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+    ],
+  },
 };
 
 export default nextConfig;
