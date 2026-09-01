@@ -19,19 +19,18 @@ export default function Post({ username, datePosted, icon, likes, content, idOwn
     return (
         <div className={styles.post}>
             <div className={styles.header}>
-
-                <div className={styles.meta}>
-                    <div>
-                        <img src={icon} alt={`${username}'s icon`} />
+                <div className={styles.userInfo}>
+                    <IconUsername />
+                    <div className={styles.meta}>
+                        <span className={styles.username}>{username}</span>
+                        <span className={styles.date}>{datePosted}</span>
                     </div>
-                    <span className={styles.username}>{username}</span>
-                    <span className={styles.date}>{datePosted}</span>
                 </div>
                 {/* TODO: Change this to a proper component for the follow button. */}
                 <Follow IdUserToFollow={idOwnerPost} />
             </div>
 
-            <PostContent title={content.title} content={content.content}/>
+            <PostContent title={content.title} content={content.content} />
             <div className={styles.footer}>
                 {likes ?
                     <div className={styles.likes}>{likes} likes</div> :
@@ -48,6 +47,14 @@ function PostContent({ children, title, content }: { children?: React.ReactNode 
         <div className={styles.content}>
             <h3>{title}</h3>
             <p>{content}</p>
+        </div>
+    );
+}
+
+function IconUsername() {
+    return (
+        <div className={styles.icon}>
+            <img src="" alt="icon" />
         </div>
     );
 }
