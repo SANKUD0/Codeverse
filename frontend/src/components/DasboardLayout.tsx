@@ -16,10 +16,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </SidebarHeader>
 
                     <SidebarSection>
-                        <SidebarItem href="/accueil" icon={<IconHome />} exact>
+                        <SidebarItem href="/home" icon={<IconHome />} exact>
                             Accueil
                         </SidebarItem>
-                        <SidebarItem href="/tendance" icon={<IconTrending />}>
+                        <SidebarItem href="/trending" icon={<IconTrending />}>
                             Tendance
                         </SidebarItem>
                     </SidebarSection>
@@ -37,17 +37,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </SidebarSection>
 
                     <SidebarSection label="Publications">
-                        <SidebarItem href="/posts/mes-posts" icon={<IconHistory />}>
-                            Mes posts
+                        <SidebarItem href="/posts/mine" icon={<IconHistory />}>
+                            My posts
                         </SidebarItem>
-                        <SidebarItem href="/posts/brouillons" icon={<IconDraft />} badge={3}>
-                            Brouillons
+                        <SidebarItem href="/posts/drafts" icon={<IconDraft />} badge={3}>
+                            Drafts
                         </SidebarItem>
                     </SidebarSection>
 
                     <SidebarFooter>
                         <SidebarAction icon={<IconPlus />} href="/posts/create">
-                            Nouveau post
+                            New post
                         </SidebarAction>
                         <SidebarItem href="/settings" icon={<IconSettings />}>
                             Paramètres
